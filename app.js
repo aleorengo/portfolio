@@ -96,6 +96,16 @@ siteNavigation?.querySelectorAll('a').forEach(link=>link.addEventListener('click
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menuOpen)setMenuOpen(false,true)});
 document.addEventListener('click',event=>{if(menuOpen&&!header.contains(event.target))setMenuOpen(false)});
 mobileNavQuery.addEventListener('change',syncMobileNavigation);
+function syncMobileProjectOrder(){
+ const gallery=document.querySelector('#websites .work-gallery');
+ const velvet=gallery?.querySelector('[href*="project-velvet-botanist"]');
+ const native=gallery?.querySelector('[href*="project-native-rollup"]');
+ if(!velvet||!native)return;
+ if(mobileNavQuery.matches)gallery.append(velvet);else gallery.insertBefore(velvet,native);
+}
+mobileNavQuery.addEventListener('change',syncMobileProjectOrder);
+syncMobileProjectOrder();
+
 
 let scrollFrame=false;
 function updateNavigation(){
