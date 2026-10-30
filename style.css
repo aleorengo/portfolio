@@ -340,7 +340,11 @@ figcaption .portrait-name{margin-top:0}.portrait-note{display:block;font:12px/1.
 body{font-variant-emoji:text}
 .mobile-menu-toggle{display:none}
 @media(max-width:760px){
- html{background:var(--browser-chrome,#efd2c4)}
+ html{background:transparent}
+ body{position:relative}
+ body::after{position:absolute}
+ .site-header:has(.name-brand){position:absolute}
+ .site-header.scrolled:has(.name-brand){position:fixed}
  .site-header:has(.name-brand){padding-top:calc(19px + env(safe-area-inset-top,0px))}
  .site-header.is-compact:has(.name-brand){min-height:calc(64px + env(safe-area-inset-top,0px));padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px;flex-wrap:nowrap;gap:0}
  .site-header.is-compact:has(.name-brand) .name-brand{margin:0 auto 0 0;font-size:clamp(18px,5.4vw,21px);max-width:calc(100% - 56px)}

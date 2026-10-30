@@ -68,10 +68,6 @@ const sectionStar=document.querySelector('.section-star');
 const mobileNavQuery=window.matchMedia('(max-width:760px)');
 const menuToggle=header?.querySelector('.mobile-menu-toggle');
 const siteNavigation=header?.querySelector('nav');
-const browserTheme=document.querySelector('meta[name="theme-color"]');
-const initialTheme=browserTheme?.content||'#efd2c4';
-const pageFooter=document.querySelector('footer');
-const footerTheme=document.querySelector('.work-contact-flow,.case-page-flow')?'#f6d7c3':document.querySelector('.about-footer-flow')?'#f3c5b4':initialTheme;
 let menuOpen=false;
 function setMenuOpen(open,returnFocus=false){
  menuOpen=Boolean(open&&mobileNavQuery.matches&&header?.classList.contains('is-compact'));
@@ -90,10 +86,7 @@ function syncMobileNavigation(){
  header?.classList.toggle('is-compact',compact);
  if(!compact)menuOpen=false;
  setMenuOpen(menuOpen);
- const atFooter=pageFooter&&pageFooter.getBoundingClientRect().top<window.innerHeight*.65;
- const theme=atFooter?footerTheme:window.scrollY>90?'#e4edf0':initialTheme;
- if(browserTheme&&browserTheme.content!==theme)browserTheme.content=theme;
- document.documentElement.style.setProperty('--browser-chrome',theme);
+
 }
 menuToggle?.addEventListener('click',()=>setMenuOpen(!menuOpen));
 siteNavigation?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuOpen(false)));
