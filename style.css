@@ -236,7 +236,7 @@ figcaption .portrait-name{margin-top:0}.portrait-note{display:block;font:12px/1.
 .hero-star-one{left:27%;top:18%}
 .site-header.scrolled:has(.name-brand){padding-bottom:24px}
 @media(max-width:1000px){.hero-star-one{left:34%;top:20%}}
-@media(max-width:600px){body:has(.name-brand) .hero-star-one{left:auto;right:10%;top:26%;width:62px}.site-header.scrolled:has(.name-brand){padding-bottom:12px}}
+@media(max-width:600px){body:has(.name-brand) .hero-star-one{left:12%;right:auto;top:26%;width:62px}.site-header.scrolled:has(.name-brand){padding-bottom:12px}}
 
 /* Centre the link group on the viewport; centre the name on compact layouts. */
 .site-header:has(.name-brand){justify-content:space-between;min-height:96px}
