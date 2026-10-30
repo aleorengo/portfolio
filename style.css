@@ -375,3 +375,24 @@ body.about-detail-page{background:#f3c5b4}
 /* Readable project navigation on phones and desktop. */
 .project-detail-page .back-link{font-size:16px;min-height:44px}
 .project-detail-page .case-heading .pill{font-size:16px;line-height:1.4;min-height:48px}
+
+/* Give the mobile nav a gentle handoff and lift the logo artwork within its bar. */
+@media(max-width:760px){
+ body:has(.name-brand) .hero-star-one{display:none}
+ .site-header:has(.name-brand){transition:background-color .4s ease,box-shadow .4s ease,padding .4s ease,min-height .4s ease,opacity .2s ease}
+ .site-header:not(.is-compact):has(.name-brand){opacity:var(--hero-nav-opacity,1)}
+ .site-header.is-compact:has(.name-brand){opacity:var(--compact-progress,1);animation:mobile-nav-enter .35s ease-out both}
+ .site-header.is-compact .brand-last-a img,.site-header.is-compact .brand-last-a::before{top:calc(50% - 3px);width:64px;height:64px}
+}
+@keyframes mobile-nav-enter{from{opacity:0;transform:translateY(-7px)}to{opacity:var(--compact-progress,1);transform:translateY(0)}}
+@media(max-width:760px) and (prefers-reduced-motion:reduce){
+ .site-header:has(.name-brand){opacity:1;animation:none;transition:none}
+}
+
+/* Continue the final paper colours beneath iPhone's bottom safe area. */
+@media(max-width:760px){
+ body:has(.work-contact-flow){background-color:#fae2d1}
+ html.footer-edge-visible{background-color:#f6d8c6}
+ html.footer-edge-visible:has(.work-contact-flow){background:#fae2d1 linear-gradient(90deg,#f1c3c9 0%,#fae2d1 48%,#f7c6a6 100%)}
+ html.footer-edge-visible:has(.about-footer-flow){background-color:#f3c5b4}
+}

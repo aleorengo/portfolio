@@ -68,6 +68,7 @@ const sectionStar=document.querySelector('.section-star');
 const mobileNavQuery=window.matchMedia('(max-width:760px)');
 const menuToggle=header?.querySelector('.mobile-menu-toggle');
 const siteNavigation=header?.querySelector('nav');
+const pageFooter=document.querySelector('.portfolio-footer');
 let menuOpen=false;
 function setMenuOpen(open,returnFocus=false){
  menuOpen=Boolean(open&&mobileNavQuery.matches&&header?.classList.contains('is-compact'));
@@ -83,6 +84,8 @@ function setMenuOpen(open,returnFocus=false){
 }
 function syncMobileNavigation(){
  const compact=mobileNavQuery.matches&&window.scrollY>90;
+ header?.style.setProperty('--hero-nav-opacity',String(Math.max(0,1-window.scrollY/90)));
+ header?.style.setProperty('--compact-progress',String(Math.min(1,Math.max(0,(window.scrollY-90)/60))));
  header?.classList.toggle('is-compact',compact);
  if(!compact)menuOpen=false;
  setMenuOpen(menuOpen);
@@ -108,6 +111,7 @@ function updateNavigation(){
 }
 function updateScroll(){
   const y=window.scrollY;
+  document.documentElement.classList.toggle('footer-edge-visible',Boolean(pageFooter&&pageFooter.getBoundingClientRect().top<window.innerHeight&&y>90));
   if(header)header.classList.toggle('scrolled',y>90);
   syncMobileNavigation();
   updateNavigation();
