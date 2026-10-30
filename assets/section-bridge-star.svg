@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="44 46 276 237">
+<defs><linearGradient id="ivory-fade" x1="0" y1="46" x2="0" y2="283" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#fffdf4"/>
+<stop offset=".43" stop-color="#fffdf4"/>
+<stop offset=".57" stop-color="#fffdf4" stop-opacity=".82"/>
+<stop offset=".8" stop-color="#fffdf4" stop-opacity=".34"/>
+<stop offset="1" stop-color="#fffdf4" stop-opacity="0"/>
+</linearGradient></defs>
+<path d="M149 46L178 142L320 130L217 188L265 239L186 212L158 283L149 222L68 238L108 194L44 113L149 142Z" fill="url(#ivory-fade)"/>
+</svg>
