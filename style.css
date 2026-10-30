@@ -371,3 +371,7 @@ body.about-detail-page{background:#f3c5b4}
 .case-page-flow .case-identity,.case-page-flow .next-project,.case-page-flow>.portfolio-footer{background:transparent}
 .case-page-flow>.portfolio-footer{border-top:0}
 .case-page-flow>.portfolio-footer::before{display:none}
+
+/* Readable project navigation on phones and desktop. */
+.project-detail-page .back-link{font-size:16px;min-height:44px}
+.project-detail-page .case-heading .pill{font-size:16px;line-height:1.4;min-height:48px}
