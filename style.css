@@ -211,7 +211,7 @@ figcaption .portrait-name{margin-top:0}.portrait-note{display:block;font:12px/1.
 
 /* The same dot screen crosses About and Work, with complementary masks. */
 .about{background-size:var(--about-paper-size,cover);background-position:var(--about-paper-x,50%) 0}
-.about::after{content:'';position:absolute;inset:auto 0 0;height:180px;z-index:0;pointer-events:none;background:#e4edf0;mask-image:url('/portfolio/assets/about-work-screen.svg?v=4');mask-size:4px 400px;mask-repeat:repeat-x;mask-position:0 0}
+.about::after{content:'';position:absolute;inset:auto 0 0;height:180px;z-index:0;pointer-events:none;background:#e4edf0;mask-image:url('/portfolio/assets/about-work-screen.svg?v=5');mask-size:4px 400px;mask-repeat:repeat-x;mask-position:0 0}
 
 /* Approved refined hero A, retaining Brighter in Pinyon Script. */
 .title-world em{font-family:Script,cursive;font-weight:400;letter-spacing:0}.hero h1{font-family:Character,Arial,sans-serif;font-weight:800;font-variation-settings:normal;letter-spacing:-.055em} .hero-title{top:32%;width:76%;max-width:1150px}.hero h1{display:grid;grid-template-columns:max-content max-content;justify-content:center;align-items:end;column-gap:.17em}.title-designs{padding:0;text-align:right}.title-for{font-size:.58em;text-align:left;padding:0;margin:0 0 .12em;line-height:1}.title-world{grid-column:1/-1;margin-top:.12em;text-align:center}.hero-work-link{top:calc(32% + clamp(90px,8.2vw,150px)*2.55)} @media(max-width:1000px) and (min-width:601px){.hero h1{font-size:clamp(76px,9vw,96px)}} @media(max-width:600px){.hero-title{top:36%;width:98%}.hero h1{font-size:clamp(40px,12.6vw,76px)}.hero-work-link{top:calc(36% + clamp(40px,12.6vw,76px)*2.8)}}
@@ -334,3 +334,36 @@ figcaption .portrait-name{margin-top:0}.portrait-note{display:block;font:12px/1.
 .about-footer-flow .about-page,.about-footer-flow>.portfolio-footer{background:transparent}
 .about-footer-flow>.portfolio-footer{border-top:0}
 .about-footer-flow>.portfolio-footer::before{display:none}
+
+/* Clean project previews; arrow glyphs explicitly use text presentation. */
+.case-visual img{border:0;padding:0;background:transparent}
+body{font-variant-emoji:text}
+.mobile-menu-toggle{display:none}
+@media(max-width:760px){
+ html{background:var(--browser-chrome,#efd2c4)}
+ .site-header:has(.name-brand){padding-top:calc(19px + env(safe-area-inset-top,0px))}
+ .site-header.is-compact:has(.name-brand){min-height:calc(64px + env(safe-area-inset-top,0px));padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px;flex-wrap:nowrap;gap:0}
+ .site-header.is-compact:has(.name-brand) .name-brand{margin:0 auto 0 0;font-size:clamp(18px,5.4vw,21px);max-width:calc(100% - 56px)}
+ .site-header.is-compact .mobile-menu-toggle{position:absolute;display:grid;place-items:center;right:12px;top:calc(10px + env(safe-area-inset-top,0px));width:44px;height:44px;padding:5px;border:0;background:none;color:#fff;cursor:pointer}
+ .mobile-menu-toggle svg{width:34px;height:34px;transform:rotate(0);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+ .mobile-menu-toggle:focus-visible{outline:1px solid currentColor;outline-offset:2px}
+ .site-header.menu-open .mobile-menu-toggle svg{transform:rotate(-90deg)}
+ .site-header.is-compact:has(.name-brand) nav{position:absolute;inset:100% 0 auto;width:100%;max-height:calc(100dvh - 64px - env(safe-area-inset-top,0px));overflow:auto;display:flex;flex-direction:column;align-items:stretch;gap:0;padding:10px 24px 20px;background:#e4edf0;border-bottom:1px solid #34101f20;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-6px);transition:opacity .25s,transform .25s,visibility .25s}
+ .site-header.is-compact:has(.name-brand) nav a{display:block;text-align:center;padding:14px 8px;font-size:14px;letter-spacing:.1em}
+ .site-header.is-compact:has(.name-brand) nav a::after{display:none}
+ .site-header.is-compact.menu-open:has(.name-brand) nav{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){.mobile-menu-toggle svg,.site-header.is-compact nav{transition:none}}
+
+/* Extend footer colours into safe areas and browser overscroll, without a white strip. */
+body:has(.work-contact-flow){background:linear-gradient(90deg,#f1c3c9 0%,#fae2d1 48%,#f7c6a6 100%)}
+body.about-detail-page{background:#f3c5b4}
+.portfolio-footer{padding-bottom:calc(35px + env(safe-area-inset-bottom,0px))}
+@media(max-width:600px){.portfolio-footer{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))}}
+
+/* Case studies share the portfolio's paper palette instead of separate colour bands. */
+.project-detail-page{--red:#34101f;--line:rgba(52,16,31,.22);background:#f6d7c3}
+.case-page-flow{isolation:isolate;background:linear-gradient(180deg,#e4edf0 0%,#e4edf0 62%,#ece7e7 82%,#f6d8c6 100%)}
+.case-page-flow .case-identity,.case-page-flow .next-project,.case-page-flow>.portfolio-footer{background:transparent}
+.case-page-flow>.portfolio-footer{border-top:0}
+.case-page-flow>.portfolio-footer::before{display:none}

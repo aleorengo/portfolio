@@ -65,6 +65,42 @@ if('ResizeObserver' in window){
 // Scroll navigation; the hero artwork stays still.
 const header=document.querySelector('.site-header');
 const sectionStar=document.querySelector('.section-star');
+const mobileNavQuery=window.matchMedia('(max-width:760px)');
+const menuToggle=header?.querySelector('.mobile-menu-toggle');
+const siteNavigation=header?.querySelector('nav');
+const browserTheme=document.querySelector('meta[name="theme-color"]');
+const initialTheme=browserTheme?.content||'#efd2c4';
+const pageFooter=document.querySelector('footer');
+const footerTheme=document.querySelector('.work-contact-flow,.case-page-flow')?'#f6d7c3':document.querySelector('.about-footer-flow')?'#f3c5b4':initialTheme;
+let menuOpen=false;
+function setMenuOpen(open,returnFocus=false){
+ menuOpen=Boolean(open&&mobileNavQuery.matches&&header?.classList.contains('is-compact'));
+ header?.classList.toggle('menu-open',menuOpen);
+ menuToggle?.setAttribute('aria-expanded',String(menuOpen));
+ menuToggle?.setAttribute('aria-label',menuOpen?'Close navigation':'Open navigation');
+ if(siteNavigation){
+  const collapsed=header?.classList.contains('is-compact')&&!menuOpen;
+  siteNavigation.inert=Boolean(collapsed);
+  if(collapsed)siteNavigation.setAttribute('aria-hidden','true');else siteNavigation.removeAttribute('aria-hidden');
+ }
+ if(returnFocus)menuToggle?.focus();
+}
+function syncMobileNavigation(){
+ const compact=mobileNavQuery.matches&&window.scrollY>90;
+ header?.classList.toggle('is-compact',compact);
+ if(!compact)menuOpen=false;
+ setMenuOpen(menuOpen);
+ const atFooter=pageFooter&&pageFooter.getBoundingClientRect().top<window.innerHeight*.65;
+ const theme=atFooter?footerTheme:window.scrollY>90?'#e4edf0':initialTheme;
+ if(browserTheme&&browserTheme.content!==theme)browserTheme.content=theme;
+ document.documentElement.style.setProperty('--browser-chrome',theme);
+}
+menuToggle?.addEventListener('click',()=>setMenuOpen(!menuOpen));
+siteNavigation?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuOpen(false)));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menuOpen)setMenuOpen(false,true)});
+document.addEventListener('click',event=>{if(menuOpen&&!header.contains(event.target))setMenuOpen(false)});
+mobileNavQuery.addEventListener('change',syncMobileNavigation);
+
 let scrollFrame=false;
 function updateNavigation(){
  const sections=[...document.querySelectorAll('main>section[id],.work-contact-flow>section[id]')];
@@ -80,6 +116,7 @@ function updateNavigation(){
 function updateScroll(){
   const y=window.scrollY;
   if(header)header.classList.toggle('scrolled',y>90);
+  syncMobileNavigation();
   updateNavigation();
   if(!reducedMotion){
     if(sectionStar)sectionStar.style.transform=`rotate(${y*.035-10}deg)`;
